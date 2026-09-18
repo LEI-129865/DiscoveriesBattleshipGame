@@ -22,3 +22,15 @@ O jogo segue a mecânica tradicional da Batalha Naval adaptada à versão cláss
   * Se algum navio foi completamente afundado.
 * **Registo:** Cada jogador anota os resultados obtidos na grelha de tiro (mar do adversário) para deduzir as posições inimigas e identificar os navios já destruídos.
 * **Condição de Vitória:** Vence o jogador que for o primeiro a localizar e afundar todos os navios da frota adversária.
+
+---
+
+### Navios
+
+| Batalha Naval | Descobrimentos | English | Dimensão | #Navios |
+| :--- | :--- | :--- | :---: | :---: |
+| Porta-aviões | Galeão | Galleon | 5 | 1 |
+| Navio de 4 canhões | Fragata | Frigate | 4 | 1 |
+| Navio de 3 canhões | Nau | Carrack | 3 | 2 |
+| Navio de 2 canhões | Caravela | Caravel | 2 | 3 |
+| Submarino | Barca | Barge | 1 | 4 |
