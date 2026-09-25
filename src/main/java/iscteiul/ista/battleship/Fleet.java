@@ -1,16 +1,17 @@
-/**
- *
- */
 package iscteiul.ista.battleship;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class implementing the management of a player's fleet.
+ */
 public class Fleet implements IFleet {
+
     /**
-     * This operation prints all the given ships
+     * Prints the details of a given list of ships to the console.
      *
-     * @param ships The list of ships
+     * @param ships The list of ships to print.
      */
     static void printShips(List<IShip> ships) {
         for (IShip ship : ships)
@@ -21,6 +22,9 @@ public class Fleet implements IFleet {
 
     private List<IShip> ships;
 
+    /**
+     * Default constructor. Initializes a new empty fleet.
+     */
     public Fleet() {
         ships = new ArrayList<>();
     }
@@ -30,11 +34,6 @@ public class Fleet implements IFleet {
         return ships;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IFleet#addShip(battleship.IShip)
-     */
     @Override
     public boolean addShip(IShip s) {
         boolean result = false;
@@ -45,41 +44,24 @@ public class Fleet implements IFleet {
         return result;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IFleet#getShipsLike(java.lang.String)
-     */
     @Override
     public List<IShip> getShipsLike(String category) {
         List<IShip> shipsLike = new ArrayList<>();
         for (IShip s : ships)
             if (s.getCategory().equals(category))
                 shipsLike.add(s);
-
         return shipsLike;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IFleet#getFloatingShips()
-     */
     @Override
     public List<IShip> getFloatingShips() {
         List<IShip> floatingShips = new ArrayList<>();
         for (IShip s : ships)
             if (s.stillFloating())
                 floatingShips.add(s);
-
         return floatingShips;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IFleet#shipAt(battleship.IPosition)
-     */
     @Override
     public IShip shipAt(IPosition pos) {
         for (int i = 0; i < ships.size(); i++)
@@ -88,11 +70,23 @@ public class Fleet implements IFleet {
         return null;
     }
 
+    /**
+     * Checks if the ship is entirely within the boundaries of the board.
+     *
+     * @param s The ship to verify.
+     * @return True if the ship is within bounds, False otherwise.
+     */
     private boolean isInsideBoard(IShip s) {
         return (s.getLeftMostPos() >= 0 && s.getRightMostPos() <= BOARD_SIZE - 1 && s.getTopMostPos() >= 0
                 && s.getBottomMostPos() <= BOARD_SIZE - 1);
     }
 
+    /**
+     * Checks if there is a collision risk (overlap or adjacency) with existing ships in the fleet.
+     *
+     * @param s The ship to verify.
+     * @return True if there is a collision risk, False if it is safe to place.
+     */
     private boolean colisionRisk(IShip s) {
         for (int i = 0; i < ships.size(); i++) {
             if (ships.get(i).tooCloseTo(s))
@@ -101,9 +95,8 @@ public class Fleet implements IFleet {
         return false;
     }
 
-
     /**
-     * This operation shows the state of a fleet
+     * Prints the fleet's status, separating ships by category and floating state.
      */
     public void printStatus() {
         printAllShips();
@@ -116,29 +109,26 @@ public class Fleet implements IFleet {
     }
 
     /**
-     * This operation prints all the ships of a fleet belonging to a particular
-     * category
+     * Prints all ships in the fleet belonging to a specific category.
      *
-     * @param category The category of ships of interest
+     * @param category The category of ships to print.
      */
     public void printShipsByCategory(String category) {
         assert category != null;
-
         printShips(getShipsLike(category));
     }
 
     /**
-     * This operation prints all the ships of a fleet but not yet shot
+     * Prints all ships in the fleet that have not yet been sunk.
      */
     public void printFloatingShips() {
         printShips(getFloatingShips());
     }
 
     /**
-     * This operation prints all the ships of a fleet
+     * Prints all ships registered in the fleet.
      */
     void printAllShips() {
         printShips(ships);
     }
-
 }
