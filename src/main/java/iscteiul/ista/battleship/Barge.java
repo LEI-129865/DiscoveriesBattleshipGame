@@ -6,7 +6,7 @@ package iscteiul.ista.battleship;
  */
 public class Barge extends Ship {
     private static final Integer SIZE = 1;
-    private static final String NAME = "Barca";
+    private static final String NAME = "Barcas";
 
     /**
      * Construtor da classe Barge.
