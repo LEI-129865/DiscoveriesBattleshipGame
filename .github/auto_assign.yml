@@ -1,0 +1,7 @@
+# Adiciona os utilizadores do grupo como revisores
+addReviewers: true
+reviewers:
+  - LEI-129865
+  - LEI-129867
+  - LEI-129888
+numberOfReviewers: 1
