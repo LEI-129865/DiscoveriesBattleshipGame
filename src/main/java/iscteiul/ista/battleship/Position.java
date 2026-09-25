@@ -1,5 +1,5 @@
 /**
- *
+ * Implementação concreta de uma posição bidimensional no tabuleiro.
  */
 package iscteiul.ista.battleship;
 
@@ -12,7 +12,12 @@ public class Position implements IPosition {
     private boolean isHit;
 
     /**
-     *
+     * Construtor da classe Position.
+     * Inicializa a posição com a linha e coluna indicadas, definindo os estados
+     * de ocupação e de disparo como falsos por omissão.
+     * 
+     * @param row    a linha do tabuleiro
+     * @param column a coluna do tabuleiro
      */
     public Position(int row, int column) {
         this.row = row;
@@ -21,36 +26,34 @@ public class Position implements IPosition {
         this.isHit = false;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IPosition#getRow()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public int getRow() {
         return row;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IPosition#getColumn()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public int getColumn() {
         return column;
     }
 
-
+    /**
+     * Calcula o código de dispersão (hash) com base nos atributos da posição.
+     * 
+     * @return o código hash gerado
+     */
     @Override
     public int hashCode() {
         return Objects.hash(column, isHit, isOccupied, row);
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IPosition#equals(java.lang.Object)
+    /**
+     * {@inheritDoc}
      */
     @Override
     public boolean equals(Object otherPosition) {
@@ -64,59 +67,53 @@ public class Position implements IPosition {
         }
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IPosition#isAdjacentTo(battleship.IPosition)
+    /**
+     * {@inheritDoc}
      */
     @Override
     public boolean isAdjacentTo(IPosition other) {
         return (Math.abs(this.getRow() - other.getRow()) <= 1 && Math.abs(this.getColumn() - other.getColumn()) <= 1);
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IPosition#occupy()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public void occupy() {
         isOccupied = true;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IPosition#shoot()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public void shoot() {
         isHit = true;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IPosition#isOccupied()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public boolean isOccupied() {
         return isOccupied;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see battleship.IPosition#isHit()
+    /**
+     * {@inheritDoc}
      */
     @Override
     public boolean isHit() {
         return isHit;
     }
 
+    /**
+     * Devolve uma representação em formato de texto das coordenadas da posição.
+     * 
+     * @return uma string contendo a linha e a coluna
+     */
     @Override
     public String toString() {
         return ("Linha = " + row + " Coluna = " + column);
     }
-
 }
